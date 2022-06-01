@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfessorData>
+   <professor id="1">
+      <nome>
+         Bailão
+      </nome>
+   </professor>
+   <Horario>
+   <list>
+      <Agendamento>
+         <dataIncio>13:00 13/05/2022</dataIncio>
+         <datafinal>14:00 13/05/2022</datafinal>
+         <tarefa_nome>Aula 1</tarefa_nome>
+         <status>Confirmado</status>
+      </Agendamento>              
+      <Agendamento>
+         <dataIncio>14:00 13/05/2022</dataIncio>
+         <datafinal>15:00 13/05/2022</datafinal>
+         <tarefa_nome>Reuniao aluno 1</tarefa_nome>
+         <status>Conflito</status>
+      </Agendamento>  
+      <Agendamento>
+         <dataIncio>14:00 13/05/2022</dataIncio>
+         <datafinal>15:00 13/05/2022</datafinal>
+         <tarefa_nome>Reuniao aluno 2</tarefa_nome>
+         <status>Conflito</status>
+      </Agendamento>  
+      <Agendamento>
+         <dataIncio>15:00 13/05/2022</dataIncio>
+         <datafinal>16:00 13/05/2022</datafinal>
+         <tarefa_nome>Reuniao aluno 3</tarefa_nome>
+         <status>Pendente</status>
+      </Agendamento>  
+
+   </list>
+   </Horario>
+</ProfessorData>
