@@ -1,10 +1,7 @@
 <?php
-
-
-// namespace model;
-
 class ProfessorModel extends PersistModelAbstract{
-    protected $nome;
+    protected $Agenda_id;
+    protected $horario;
     private $id;
     function __construct(){
         parent::__construct();
@@ -19,18 +16,28 @@ class ProfessorModel extends PersistModelAbstract{
         return $this;
     }
 
-    public function getNome(){
-        return $this->nome;
+    public function getAgenda_id(){
+        return $this->Agenda_id;
     }
-    public function setNome($in_nome){
-        $this->nome = $in_nome;
+    public function setAgenda_id($in_Agenda_id){
+        $this->Agenda_id = $in_Agenda_id;
+        return $this;
+    }
+
+
+    public function getHorario(){
+        return $this->horario;
+    }
+    public function setHorario($in_horario){
+        $this->horario = $in_horario;
         return $this;
     }
     private function createTable(){
-        $query ="CREATE TABLE IF NOT EXISTS Professor 
+        $query ="CREATE TABLE IF NOT EXISTS Reuniao 
         (
             Id INTEGER NOT NULL AUTO_INCREMENT,
-            `Nome` CHAR(255) NOT NULL,
+            `Agenda_id` INTEGER NOT NULL,
+            `horario` DATETIME NOT NULL,
             PRIMARY KEY(Id)
         );
         

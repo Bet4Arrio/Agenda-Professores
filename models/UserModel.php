@@ -6,8 +6,9 @@ class User extends PersistModelAbstract{
     protected $matricula;
     protected $nome;
     protected $status;
-    function __construct(){
-        parent::__construct();
+    function construct(){
+        parent::construct();
+        $this->createTable();
     }
     /**
      *  Realiza Login
@@ -17,7 +18,7 @@ class User extends PersistModelAbstract{
      * @return Boolean
     */
     public function Signup(){
-        return FALSE
+        return FALSE;
     }
 
     /**
@@ -27,7 +28,7 @@ class User extends PersistModelAbstract{
      * @return Boolean
     */
     public function Login($matricula, $senha){
-        return FALSE
+        return FALSE;
     }
 
     /**
@@ -35,7 +36,7 @@ class User extends PersistModelAbstract{
      * @return Boolean
      */
     public function Logout(){
-        return FALSE
+        return FALSE;
     }
 
     private function createTable(){

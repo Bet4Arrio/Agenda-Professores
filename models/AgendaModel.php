@@ -4,7 +4,7 @@ require_once("lib/PersistModelAbstract.php");
 
 class AgendaModel extends PersistModelAbstract{
     private $id;
-    private $xml;
+    private $professor_id;
     function __construct(){
         parent::__construct();
         $this->createTable();
@@ -19,29 +19,20 @@ class AgendaModel extends PersistModelAbstract{
         return $this;
     }
 
-    public function getXml(){
-        return $this->xml;
+    public function getprofessor_id(){
+        return $this->professor_id;
     }
-    public function setXml($in_xml){
-        $this->xml = $in_xml;
+    public function setprofessor_id($in_professor_id){
+        $this->professor_id = $in_professor_id;
         return $this;
     }
-    public function loadById($id){
-        $query = "SELECT * FROM Agenda_temp WHERE Id=$id";
-        $ret = $this->o_db->query($query);
-        if($ret != false){
-            $data = $ret->fetchObject();
-            $this->setId($data->Id);
-            $this->setXml($data->xml);
-            return $this;
-        }
-        return false;
-    }
+    // public function loadById($id){}
+
     private function createTable(){
-        $query ="CREATE TABLE IF NOT EXISTS Agenda_temp 
+        $query ="CREATE TABLE IF NOT EXISTS Agenda 
         (
             Id INTEGER NOT NULL AUTO_INCREMENT,
-            `xml` LONGTEXT NOT NULL,
+            `Professor_id` INTEGER NOT NULL,
             PRIMARY KEY(Id)
         );
         
