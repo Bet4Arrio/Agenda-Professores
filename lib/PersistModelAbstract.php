@@ -3,7 +3,7 @@ abstract class PersistModelAbstract{
     protected $o_db;
     function __construct(){
         $host = "127.0.0.1";
-        $db = "aulas";
+        $db = "agenda";
         $login = "root";
         $pass = "";
         $st_dsn = "mysql:host=$host;dbname=$db";

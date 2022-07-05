@@ -169,5 +169,9 @@ class View
         echo $this->getContents();
         exit;
     }
+    public function showXML(){
+        echo $this->arrayToXml();
+        exit;
+    }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-// define("URL", "/aulas");
+define("URL", "/Agenda-Professores");
 
 // $xmlUri      = 'my.xml';
 // $xslUri      = 'views/login.xsl';

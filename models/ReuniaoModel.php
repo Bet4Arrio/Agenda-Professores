@@ -40,6 +40,8 @@ class ProfessorModel extends PersistModelAbstract{
         $this->horario = $in_horario;
         return $this;
     }
+
+    
     private function createTable(){
         $query ="CREATE TABLE IF NOT EXISTS Reuniao 
         (

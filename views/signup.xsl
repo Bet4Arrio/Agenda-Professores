@@ -15,30 +15,34 @@
         <div class="hero-body">
           <div class="container has-text-centered">
             <h1 class="title">
-              Login
+              Cadastrar
             </h1>
             <div class="columns is-centered">
               <div class="column is-6 box">
               <form action="" method="post">
+              <div class="field">
+                    <label class="label">Nome</label>
+                    <div class="control">
+                      <input type="text" name="nome" class="input" id="Nome" placeholder="Nome" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">matricula</label>
+                    <div class="control">
+                      <input type="text" name="matricula" class="input" id="matricula" placeholder="matricula" />
+                    </div>
+                </div>
+
                   <div class="field">
-                      <label class="label">Name</label>
-                      <div class="control">
-                        <input type="text" name="matricula" class="input" id="matricula" placeholder="matricula" />
-                      </div>
+                    <label class="label">Email</label>
+                    <div class="control">
+                      <input type="password" name="senha" class="input" id="senha" placeholder="Password" />
                     </div>
-
-                    <div class="field">
-                      <label class="label">Email</label>
-                      <div class="control">
-                        <input type="password" name="senha" class="input" id="senha" placeholder="Password" />
-                      </div>
-                    </div>
-
-                      <div class="field">
-                      <input type="submit" class="button" value="Logar"/>
+                  </div>
+                  <div class="field">
+                      <input type="submit" class="button" value="Criar contar"/>
                     </div>
               </form>
-              
               </div>
             </div>
           </div>
