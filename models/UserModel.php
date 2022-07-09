@@ -6,6 +6,11 @@ class User extends PersistModelAbstract{
     public $Id;
     public $matricula;
     public $nome;
+    public $cargo_choices = [
+        0 => "Aluno",
+        1=> "Professor",
+    ];
+    private $cargo = 0;
     protected $senha;
     function construct(){
         parent::construct();
@@ -29,6 +34,9 @@ class User extends PersistModelAbstract{
     public function setNome($_nome){
         $this->nome = $_nome;
     }
+    public function setCargo($_cargo){
+        $this->cargo = $_cargo;
+    }
     public function setSenha($_senha){
         $this->senha =hash('sha512', $_senha ) ;
     }
@@ -40,19 +48,21 @@ class User extends PersistModelAbstract{
                     (
                         matricula,
                         nome,
-                        senha
+                        senha,
+                        cargo
                     )
                     VALUES
                     (   
                         '$this->matricula',
                         '$this->nome',
                         '$this->senha'
+                        '$this->cargo'
                     );";
         }else{
-
-            "INSERT INTO `User` 
+            "UPDATE `User` SET
                 matricula=  $this->matricula,
                 nome = $this->nome,
+                cargo = $this->cargo,
                 senha= hash('sha512', $this->senha),
             WHERE
                 Id=$this->Id;";
@@ -60,10 +70,10 @@ class User extends PersistModelAbstract{
 
         try {
             if($this->o_db->exec($query)>0){
-                if(is_null($this->id)){
+                if(is_null($this->Id)){
                     return $this->o_db->lastInsertId();
                 }else{
-                    return $this->id;
+                    return $this->Id;
                 }
             }
         } catch (PDOException $e) {
@@ -71,11 +81,18 @@ class User extends PersistModelAbstract{
         }
         return false;
     }
+
+    public function is_teacher(){
+        return $this->cargo;
+    }
+
     public function Signup(){
         $this->setMatricula($_REQUEST['matricula']);
         $this->setSenha($_REQUEST['senha']);
         $this->setNome($_REQUEST['nome']);
-
+        if(isset($_REQUEST['cargo']) && !empty($_REQUEST['cargo'])){
+            $this->setCargo($_REQUEST['cargo']);
+        }
         $this->save();
     }
     public function loadByMatricula($matricula){
@@ -84,16 +101,14 @@ class User extends PersistModelAbstract{
         if($ret != false){
             $data = $ret->fetchObject();
             $this->setId($data->Id);
-            $this->setName($data->name);
+            $this->setNome($data->name);
             $this->setMatricula($data->matricula);
             $this->setSenha($data->senha);
             return $this;
         }
         return false;
     }
-
     public function login(){
-
         $log = addslashes($_REQUEST["matricula"]);
          if($this->loadByMatricula($log) != false){
              if(hash('sha512',$_REQUEST["senha"]) == $this->getPass()){
@@ -129,6 +144,7 @@ class User extends PersistModelAbstract{
             `matricula` CHAR(255) NOT NULL,
             `senha` CHAR(255) NOT NULL,
             `nome` CHAR(255) NOT NULL,
+            `cargo` INT DEFAULT 0,
             PRIMARY KEY(Id)
         );
         ";

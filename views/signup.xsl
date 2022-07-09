@@ -34,7 +34,7 @@
                 </div>
 
                   <div class="field">
-                    <label class="label">Email</label>
+                    <label class="label">Senha</label>
                     <div class="control">
                       <input type="password" name="senha" class="input" id="senha" placeholder="Password" />
                     </div>

@@ -21,14 +21,14 @@
               <div class="column is-6 box">
               <form action="" method="post">
                   <div class="field">
-                      <label class="label">Name</label>
+                      <label class="label">Matricula</label>
                       <div class="control">
                         <input type="text" name="matricula" class="input" id="matricula" placeholder="matricula" />
                       </div>
                     </div>
 
                     <div class="field">
-                      <label class="label">Email</label>
+                      <label class="label">Senha</label>
                       <div class="control">
                         <input type="password" name="senha" class="input" id="senha" placeholder="Password" />
                       </div>

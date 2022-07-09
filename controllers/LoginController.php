@@ -10,8 +10,8 @@ class LoginController{
         if($user->login()){
            $o_view = new View();
            $o_view->setParams($user);
-           $o_view->showXML(); 
-        //    header("Location: ".URL."/home");
+           $o_view->showContents(); 
+           header("Location: ".URL."/home");
         }else{
 
         }

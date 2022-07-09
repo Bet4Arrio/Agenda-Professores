@@ -5,6 +5,7 @@ include('lib/Route.php');
 Route::add('/', ["HomeController", "home"]);
 Route::add('/home', ["HomeController", "home"]);
 Route::add('/agenda', ["AgendaController", "home"]);
+Route::add('/agenda/[0-9]*', ["AgendaController", "prof"]);
 
 Route::add('/signup', ["SignupController", "home"]);
 Route::add('/signup', ["SignupController", "signup"], "post");
