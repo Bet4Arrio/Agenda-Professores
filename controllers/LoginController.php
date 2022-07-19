@@ -14,7 +14,7 @@ class LoginController{
                 header("Location: ".URL."/home");
             }
         }else{
-            echo "sdasdasdaaaaaaaaaaaa";
+            // echo "sdasdasdaaaaaaaaaaaa";
             header("Location: ".URL."/login");
 
         }

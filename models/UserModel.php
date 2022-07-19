@@ -130,8 +130,9 @@ class User extends PersistModelAbstract{
 
     public function login(){
         $log = addslashes($_REQUEST["matricula"]);
-         if($this->loadByMatricula($log) != false){
-             if(hash('sha512',$_REQUEST["senha"]) == $this->encrypt_pass){
+        if($this->loadByMatricula($log) != false){
+             if(hash('sha512',$_REQUEST["senha"]) == $this->senha){
+                 echo "aqui2";
                  $_SESSION["login"] = true;
                  $_SESSION["nome"] = $this->nome;
                  $_SESSION["matricula"] = $this->matricula;
