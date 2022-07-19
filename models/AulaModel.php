@@ -1,9 +1,9 @@
 <?php
 class AulaModel extends PersistModelAbstract{
-    protected $Agenda_id;
-    protected $horario_incio;
-    protected $horario_final;
-    protected $nome;
+    public $Agenda_id;
+    public $horario_incio;
+    public $horario_final;
+    public $nome;
     private $id;
     function __construct(){
         parent::__construct();

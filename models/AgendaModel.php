@@ -66,9 +66,14 @@ class AgendaModel extends PersistModelAbstract{
         $ret = $this->o_db->query($query);
         if($ret != false){
             $data = $ret->fetchObject();
-            $this->setId($data->Id);
-            $this->setprofessorId($data->Professor_id);
-            return $this;
+            if($data){
+                echo $data;
+                $this->setId($data->Id);
+                $this->setprofessorId($data->Professor_id);
+                return $this;
+            }
+            echo "infernoooooooooooooooooooooooooooooooooooooooooooooo";
+            return false;
         }
         return false;
     }

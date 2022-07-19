@@ -86,8 +86,8 @@ class View
 
      public function getXMLParams(){
         if(isset($this->v_params)){
-            if (is_array($this->v_params) || ($this->v_params instanceof Traversable)){
-                return $this->arrayToXML($this->v_params);
+            if (is_array($this->v_params) || is_object($this->v_params)){
+                return $this->arrayToXml($this->v_params);
             }
             $_xml = simplexml_load_string($this->v_params);
             if (!$_xml) {
@@ -122,10 +122,8 @@ class View
             if (is_array($v)) { 
                   
                 // Call function for nested array
-                arrayToXml($v, $k, $_xml->addChild($k));
-                }
-                  
-            else {
+                $this->arrayToXml($v, $k, $_xml->addChild($k));
+            }else {
                   
                 // Simply add child element. 
                 $_xml->addChild($k, $v);

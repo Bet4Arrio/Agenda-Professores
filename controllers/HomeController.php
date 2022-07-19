@@ -9,8 +9,7 @@ class HomeController{
             $o_agenda = new AgendaModel();
 
             $o_view = new View('views/agenda/todas.xsl');
-            echo "testeeeeeeeeeeeeee";
-            // $o_view->showContents();
+            $o_view->showContents();
         }else{
             header("Location: ".URL."/login");
         }

@@ -9,14 +9,12 @@ class LoginController{
         $user = new User();
         if($user->login()){
             if($user->is_teacher()){
-                header("Location: ".URL."/prof_agenda");
+                header("Location: ".URL."/Agenda-O-Satanas-Esta-Em-Meu-Ser-Eu-Quero-Abusar-Sexualmente-De-Alguem-Inferno-Diabo-Eu-Te-Ofereco-A-Minha-Alma");
             }else{
                 header("Location: ".URL."/home");
             }
         }else{
-            // echo "sdasdasdaaaaaaaaaaaa";
             header("Location: ".URL."/login");
-
         }
     }
     public function loginXMLAction(){
@@ -25,7 +23,6 @@ class LoginController{
            $o_view = new View();
            $o_view->setParams($user);
            $o_view->showXML(); 
-        //    header("Location: ".URL."/home");
         }else{
 
         }
