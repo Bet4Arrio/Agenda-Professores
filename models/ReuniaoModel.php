@@ -1,9 +1,10 @@
 <?php
 class ReuniaoModel extends PersistModelAbstract{
-    protected $Agenda_id;
-    protected $Aluno_id;
-    protected $horario_incio;
-    protected $horario_final;
+    public $Agenda_id;
+    public $Aluno_id;
+    public $horario_incio;
+    public $horario_final;
+
     private $id;
     function __construct(){
         parent::__construct();

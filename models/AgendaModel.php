@@ -6,10 +6,11 @@ require_once("models/AulaModel.php");
 require_once("models/UserModel.php");
 
 class AgendaModel extends PersistModelAbstract{
-    private $id;
-    private $professor_id;
-    private $aulas;
-    private $reunioes;
+    public $id;
+    public $professor_id;
+    public $aulas;
+    public $reunioes;
+    public $professor;
     function __construct(){
         parent::__construct();
         $this->createTable();
@@ -43,10 +44,23 @@ class AgendaModel extends PersistModelAbstract{
         return $this->aulas;
     }
 
-    public function _listAll(){
-
+    public function _listAll($_agendaID){
+        $query = "SELECT * FROM Agenda WHERE 1";
+        $ret = $this->o_db->query($query);
+        // $data = $ret->fetchObject();
+        $lista = [];
+        if($ret){
+            foreach ($ret as $row){
+                $agenda = new AgendaModel();
+                $agenda->setId($row["Id"]);
+                $agenda->setprofessorId($row["Professor_id"]);
+                $agenda->loadProf();
+                $lista[] =  $agenda;
+            }
+            return $lista;
+        }
+        return false;
     }
-
     public function LoadByProf($_id){
         $query = "SELECT * FROM `Agenda` WHERE Professor_id = '$_id'";
         $ret = $this->o_db->query($query);
@@ -58,8 +72,16 @@ class AgendaModel extends PersistModelAbstract{
         }
         return false;
     }
+    private function loadProf(){
+        if(! is_null($this->professor_id)){
+            $this->professor = new User();
+            $this->professor->loadById($this->professor_id);
+            return $this;
+        }
+    }
+    
     public function getAllProfContents(){
-  
+        $this->loadProf();
         $this->getReunioes();
         $this->getAulas();
     }

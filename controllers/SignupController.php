@@ -12,7 +12,7 @@ class SignupController{
            $o_view = new View();
            $o_view->setParams($user);
            $o_view->showXML(); 
-        //    header("Location: ".URL."/home");
+           header("Location: ".URL."/home");
         }else{
 
         }

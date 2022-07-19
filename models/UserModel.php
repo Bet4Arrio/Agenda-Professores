@@ -12,6 +12,7 @@ class User extends PersistModelAbstract{
     ];
     private $cargo = 0;
     protected $senha;
+    protected $encrypt_pass;
     function construct(){
         parent::construct();
         $this->createTable();
@@ -39,8 +40,11 @@ class User extends PersistModelAbstract{
     }
     public function setSenha($_senha){
         $this->senha = $_senha ;
+        $this->encrypt_pass = $this->encrypt();
     }
-
+    private function encrypt(){
+        return hash('sha512', $this->senha);
+    }
 
     public function save(){
         if(is_null($this->Id)){
@@ -55,7 +59,7 @@ class User extends PersistModelAbstract{
                     (   
                         '$this->matricula',
                         '$this->nome',
-                        'hash('sha512', $this->senha)',
+                        '$this->encrypt_pass',
                         '$this->cargo'
                     );";
         }else{
@@ -63,7 +67,7 @@ class User extends PersistModelAbstract{
                 matricula=  $this->matricula,
                 nome = $this->nome,
                 cargo = $this->cargo,
-                senha= hash('sha512', $this->senha),
+                senha=  $this->encrypt_pass,
             WHERE
                 Id=$this->Id;";
         }
@@ -101,7 +105,7 @@ class User extends PersistModelAbstract{
         if($ret != false){
             $data = $ret->fetchObject();
             $this->setId($data->Id);
-            $this->setNome($data->name);
+            $this->setNome($data->nome);
             $this->setMatricula($data->matricula);
             $this->setSenha($data->senha);
             $this->setCargo($data->cargo);
@@ -109,12 +113,27 @@ class User extends PersistModelAbstract{
         }
         return false;
     }
+    public function loadById($_id){
+        $query = "SELECT * FROM `User` WHERE Id = '$_id'";
+        $ret = $this->o_db->query($query);
+        if($ret != false){
+            $data = $ret->fetchObject();
+            $this->setId($data->Id);
+            $this->setNome($data->nome);
+            $this->setMatricula($data->matricula);
+            $this->setSenha($data->senha);
+            $this->setCargo($data->cargo);
+            return $this;
+        }
+        return false;
+    }
+
     public function login(){
         $log = addslashes($_REQUEST["matricula"]);
          if($this->loadByMatricula($log) != false){
-             if(hash('sha512',$_REQUEST["senha"]) == $this->getPass()){
+             if(hash('sha512',$_REQUEST["senha"]) == $this->encrypt_pass){
                  $_SESSION["login"] = true;
-                 $_SESSION["name"] = $this->name;
+                 $_SESSION["nome"] = $this->nome;
                  $_SESSION["matricula"] = $this->matricula;
                  $_SESSION["Id"] = $this->Id;
                  $_SESSION["cargo"] = $this->cargo;
@@ -130,7 +149,7 @@ class User extends PersistModelAbstract{
      public function isloged(){
          if(isset($_SESSION["login"]) && $_SESSION["login"] == true){
              $this->setId($_SESSION["Id"]);
-             $this->setNome($_SESSION["name"]);
+             $this->setNome($_SESSION["nome"]);
              $this->setMatricula($_SESSION["matricula"]);
              $this->setCargo($_SESSION["cargo"]);
              $this->setId($_SESSION["Id"]);
